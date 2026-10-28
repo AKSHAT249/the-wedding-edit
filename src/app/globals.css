@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f1e7;
+  --foreground: #302725;
+  --maroon: #542b32;
+  --rose: #a64b55;
+  --gold: #d6b477;
+  --ivory: #f8f1e7;
+  --ink: #302725;
+  --muted: #765b56;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-maroon: var(--maroon);
+  --color-rose: var(--rose);
+  --color-gold: var(--gold);
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #542b32;
+  color: #f8f1e7;
+}
+
+:focus-visible {
+  outline: 2px solid #d6b477;
+  outline-offset: 3px;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.9s ease both;
+}
+
+.rise-in-delay {
+  animation-delay: 0.15s;
+}
+
+.animate-float {
+  animation: float-y 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise-in,
+  .animate-float {
+    animation: none;
+  }
+}
+
+.legal-copy h2 {
+  margin-top: 2.75rem;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.7rem, 2vw, 2.1rem);
+  line-height: 1.2;
+  color: #542b32;
+}
+
+.legal-copy p,
+.legal-copy li {
+  margin-top: 0.85rem;
+  color: #765b56;
+  line-height: 1.75;
+}
+
+.legal-copy ul {
+  margin-top: 0.5rem;
+  padding-left: 1.15rem;
+  list-style: disc;
 }
